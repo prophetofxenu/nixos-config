@@ -39,6 +39,22 @@ rec {
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
+  # acpitz is used to shut down the system if thermals are too high. However, on the X570, this sensor seems to be broken.
+  # So, disable it at boot.
+  # https://forum.manjaro.org/t/acpi-thermal-limit-triggers-thermal-shutdown-on-sleep/154502/16
+  systemd.services.disable-broken-thermal = {
+    description = "Disable broken acpitz protection";
+    wantedBy = [ "multi-user.target" ];
+    script = ''
+      #!/usr/bin/env sh
+      echo disabled > /sys/class/thermal/thermal_zone2/mode
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+  };
+
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -135,12 +151,29 @@ rec {
   nixpkgs.config.android_sdk.accept_license = true;
 
   programs.direnv.enable = true;
+  # TODO move this to its own module
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     configure = {
       packages.xenu = with pkgs.vimPlugins; {
-        start = [ ctrlp guess-indent-nvim ];
+        start = [
+	  comment-nvim # easy commenting
+	  conform-nvim # formatting
+	  #ctrlp # fuzzy finder
+	  nvim-dap # debug adapter client (requires adapter for lang)
+	  guess-indent-nvim # auto set indentation on load
+	  indent-blankline-nvim # indent guides
+	  lualine-nvim # status line
+	  nvim-autopairs # pair completion
+	  nvim-cmp # completions
+	  nvim-lspconfig # quickstart for common LSPs
+	  nvim-treesitter # lang specific features
+	  nvim-web-devicons # file icons
+	  telescope-nvim # fuzzy finder
+	  trouble-nvim # problem and reference view
+	  which-key-nvim # shortcut helper
+	];
       };
     };
   };
