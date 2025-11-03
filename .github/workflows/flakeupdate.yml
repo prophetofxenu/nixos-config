@@ -1,0 +1,21 @@
+name: flakeupdate
+
+on:
+  schedule:
+  - cron: "0 0 * * 1,3,5"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  flakeupdate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v31
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: Update flake
+        run: nix flake update
+      - uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "updated flake (GitHub Action)"
