@@ -1,5 +1,8 @@
 name: flakeupdate
 
+permissions:
+  contents: write # needed to push commits
+
 on:
   schedule:
   - cron: "0 0 * * 1,3,5"
