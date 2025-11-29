@@ -10,17 +10,17 @@
 
     nixosConfigurations.xenu-q58 = nixpkgs.lib.nixosSystem {
       modules = [
-        ./base-configurations/q58-configuration.nix
+        ./base-configs/q58-configuration.nix
 
         ./desktop/xenu-q58.nix
         ./gui/plasma.nix
-	./games/vr.nix
+        ./games/vr.nix
       ];
     };
 
     nixosConfigurations.xenu-t14 = nixpkgs.lib.nixosSystem {
       modules = [
-        ./base-configurations/t14-configuration.nix
+        ./base-configs/t14-configuration.nix
 
         ./desktop/xenu-t14.nix
         ./gui/plasma.nix

@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ../hardware-configurations/t14-hardware-configuration.nix
     ];
 
   boot.initrd.luks.devices.root = {
