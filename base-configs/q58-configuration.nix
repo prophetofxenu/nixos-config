@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configurations/q58-hardware-configuration.nix
+      ../hardware-configurations/q58-hardware-configuration.nix
     ];
 
   boot.initrd.luks.devices.root = {

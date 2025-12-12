@@ -235,6 +235,12 @@ rec {
     ];
   };
 
+  # udev rules for platformio
+  services.udev.packages = with pkgs; [
+    platformio-core.udev
+    openocd
+  ];
+
   # needed for devenv
   nix.extraOptions = ''
     extra-substituters = https://devenv.cachix.org
