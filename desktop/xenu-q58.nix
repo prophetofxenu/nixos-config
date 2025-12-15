@@ -69,7 +69,9 @@ rec {
     lm_sensors
     lsof
     vim
+    unzip
     wget
+    zip
   ];
 
   programs.gnupg.agent = {
