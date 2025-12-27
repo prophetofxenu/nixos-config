@@ -15,21 +15,25 @@
     shellAliases = {
       ll = "ls -l";
       lla = "ls -la";
-      svim = "sudo vim";
-      upd8sw = "sudo nixos-rebuild switch --flake /etc/nixos";
+
+      suvim = "sudo vim";
+      gosys = "cd /etc/nixos";
+      vimsys = "sudo vim /etc/nixos";
+      upd8 = "sudo nixos-rebuild switch --flake /etc/nixos";
     };
 
-    zplug = {
-      enable = true;
-      plugins = [
-        { name = "zsh-users/zsh-history-substring-search"; }
-	{ name = "agkozak/zsh-z"; }
-	{
-	  name = "dinizgab/zskai-theme";
-	  tags = [ "as:theme" ];
-	}
-      ];
-    };
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "powerlevel10k-config";
+        src = ./zsh;
+        file = "p10k.zsh";
+      }
+    ];
   };
 
   programs.git = {
