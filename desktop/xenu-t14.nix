@@ -72,8 +72,12 @@ rec {
       mv /etc/resolv.conf.backup /etc/resolv.conf
     '';
   };
-  services.openvpn.servers.airvpn = {
+  services.openvpn.servers.airvpn-eu = {
     config = '' config /etc/openvpn-configs/AirVPN_Europe_UDP-443-Entry3.ovpn '';
+    autoStart = false;
+  };
+  services.openvpn.servers.airvpn-ca = {
+    config = '' config /etc/openvpn-configs/AirVPN_Canada_UDP-443-Entry3.ovpn '';
     autoStart = false;
   };
 
@@ -95,6 +99,8 @@ rec {
 
 
   # Packages
+
+  programs.zsh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -126,6 +132,8 @@ rec {
       "dialout" # embedded development
       "wheel" # sudo
     ];
+    shell = pkgs.zsh;
+    useDefaultShell = false;
     packages = with pkgs; [
       # utilities
       devenv
@@ -156,8 +164,6 @@ rec {
       # dev
       freecad
       graphviz # for dependency graph in freecad
-      git
-      git-lfs
       kicad
       orca-slicer
       vscode
