@@ -48,7 +48,6 @@ rec {
   environment.systemPackages = with pkgs; [
     curl
     unzip
-    vim
     wget
     zip
   ];
@@ -100,29 +99,12 @@ rec {
 
   # Packages
 
-  programs.zsh.enable = true;
-
   nixpkgs.config.allowUnfree = true;
+
+  programs.zsh.enable = true;
 
   programs.firefox.enable = true;
   programs.steam.enable = true;
-
-  programs.direnv.enable = true;
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    configure = {
-      packages.xenu = with pkgs.vimPlugins; {
-        start = [
-	  ctrlp
-	];
-	opt = [
-          guess-indent-nvim
-	];
-      };
-    };
-  };
-
 
   # User config
 
@@ -136,7 +118,6 @@ rec {
     useDefaultShell = false;
     packages = with pkgs; [
       # utilities
-      devenv
       keepassxc
       logseq
       megasync
@@ -151,7 +132,6 @@ rec {
       telegram-desktop
 
       # media
-      spotify
       strawberry
       vlc
 
@@ -166,9 +146,6 @@ rec {
       graphviz # for dependency graph in freecad
       kicad
       orca-slicer
-      vscode
-
-      # languages
 
       # drones
       betaflight-configurator

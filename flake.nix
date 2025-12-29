@@ -31,7 +31,7 @@
 	home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
 	  home-manager.useUserPackages = true;
-	  home-manager.users.xenu = ./home/xenu-t14.nix;
+	  home-manager.users.xenu = ./home/xenu.nix;
 	}
       ];
     };
