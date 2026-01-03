@@ -14,9 +14,10 @@
 
       vi = "nvim";
       vim = "nvim";
-      suvim = "sudo nvim";
+      sued = "sudoedit";
+
       gosys = "cd /etc/nixos";
-      vimsys = "sudo nvim /etc/nixos";
+      vimsys = "sudoedit /etc/nixos";
       upd8 = "sudo nixos-rebuild switch --flake /etc/nixos";
     };
 

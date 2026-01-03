@@ -10,6 +10,8 @@
     ./development/development.nix
     ./development/neovim.nix
     ./development/vscode/vscode.nix
+
+    ./engineering/3d-printing.nix
   ];
 
   # This value determines the Home Manager release that your

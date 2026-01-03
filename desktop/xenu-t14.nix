@@ -142,10 +142,7 @@ rec {
       krita
 
       # dev
-      freecad
-      graphviz # for dependency graph in freecad
       kicad
-      orca-slicer
 
       # drones
       betaflight-configurator

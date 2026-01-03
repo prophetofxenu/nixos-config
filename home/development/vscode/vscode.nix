@@ -43,16 +43,16 @@ in
   #  ];
   #};
 
-  programs.vscode.profiles.webdev = {
-    userSettings = defaultSettings;
-    keybindings = defaultKeybindings;
+  #programs.vscode.profiles.webdev = {
+  #  userSettings = defaultSettings;
+  #  keybindings = defaultKeybindings;
 
-    extensions = with pkgs.vscode-extensions; defaultExtensions ++ [
-      github.copilot
-      github.copilot-chat
+  #  extensions = with pkgs.vscode-extensions; defaultExtensions ++ [
+  #    github.copilot
+  #    github.copilot-chat
 
-      bradlc.vscode-tailwindcss
-      dbaeumer.vscode-eslint
-    ];
-  };
+  #    bradlc.vscode-tailwindcss
+  #    dbaeumer.vscode-eslint
+  #  ];
+  #};
 }
