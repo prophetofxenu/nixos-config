@@ -48,7 +48,6 @@ rec {
   environment.systemPackages = with pkgs; [
     curl
     unzip
-    vim
     wget
     zip
   ];
@@ -72,8 +71,12 @@ rec {
       mv /etc/resolv.conf.backup /etc/resolv.conf
     '';
   };
-  services.openvpn.servers.airvpn = {
+  services.openvpn.servers.airvpn-eu = {
     config = '' config /etc/openvpn-configs/AirVPN_Europe_UDP-443-Entry3.ovpn '';
+    autoStart = false;
+  };
+  services.openvpn.servers.airvpn-ca = {
+    config = '' config /etc/openvpn-configs/AirVPN_Canada_UDP-443-Entry3.ovpn '';
     autoStart = false;
   };
 
@@ -98,25 +101,10 @@ rec {
 
   nixpkgs.config.allowUnfree = true;
 
+  programs.zsh.enable = true;
+
   programs.firefox.enable = true;
   programs.steam.enable = true;
-
-  programs.direnv.enable = true;
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    configure = {
-      packages.xenu = with pkgs.vimPlugins; {
-        start = [
-	  ctrlp
-	];
-	opt = [
-          guess-indent-nvim
-	];
-      };
-    };
-  };
-
 
   # User config
 
@@ -126,9 +114,10 @@ rec {
       "dialout" # embedded development
       "wheel" # sudo
     ];
+    shell = pkgs.zsh;
+    useDefaultShell = false;
     packages = with pkgs; [
       # utilities
-      devenv
       keepassxc
       logseq
       megasync
@@ -143,7 +132,6 @@ rec {
       telegram-desktop
 
       # media
-      spotify
       strawberry
       vlc
 
@@ -154,15 +142,7 @@ rec {
       krita
 
       # dev
-      freecad
-      graphviz # for dependency graph in freecad
-      git
-      git-lfs
       kicad
-      orca-slicer
-      vscode
-
-      # languages
 
       # drones
       betaflight-configurator

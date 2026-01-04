@@ -5,8 +5,12 @@
     # i.e. nixos-24.11
     # Use `nix flake update` to update the flake to the latest revision of the chosen release channel.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = inputs@{ self, nixpkgs, ... }: {
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, ... }: {
 
     nixosConfigurations.xenu-q58 = nixpkgs.lib.nixosSystem {
       modules = [
@@ -20,10 +24,18 @@
 
     nixosConfigurations.xenu-t14 = nixpkgs.lib.nixosSystem {
       modules = [
+        nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
+
         ./base-configs/t14-configuration.nix
 
         ./desktop/xenu-t14.nix
         ./gui/plasma.nix
+
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.xenu = ./home/xenu.nix;
+        }
       ];
     };
 
