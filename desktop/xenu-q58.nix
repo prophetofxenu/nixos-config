@@ -4,7 +4,6 @@ rec {
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
   # Device management
 
   boot = {
@@ -62,13 +61,9 @@ rec {
 
   environment.systemPackages = with pkgs; [
     curl
-    git
-    git-lfs
-    htop
     killall
     lm_sensors
     lsof
-    vim
     unzip
     wget
     zip
@@ -150,36 +145,9 @@ rec {
   # Packages
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.android_sdk.accept_license = true;
+  nixpkgs.config.rocmSupport = true;
 
-  programs.direnv.enable = true;
-  # TODO move this to its own module
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    configure = {
-      packages.xenu = with pkgs.vimPlugins; {
-        start = [
-	  comment-nvim # easy commenting
-	  conform-nvim # formatting
-	  #ctrlp # fuzzy finder
-	  nvim-dap # debug adapter client (requires adapter for lang)
-	  guess-indent-nvim # auto set indentation on load
-	  indent-blankline-nvim # indent guides
-	  lualine-nvim # status line
-	  nvim-autopairs # pair completion
-	  nvim-cmp # completions
-	  nvim-lspconfig # quickstart for common LSPs
-	  nvim-treesitter # lang specific features
-	  nvim-web-devicons # file icons
-	  telescope-nvim # fuzzy finder
-	  trouble-nvim # problem and reference view
-	  which-key-nvim # shortcut helper
-	];
-      };
-    };
-  };
-
+  programs.zsh.enable = true;
 
   programs.firefox.enable = true;
 
@@ -191,10 +159,9 @@ rec {
   users.users.xenu = {
     isNormalUser = true;
     extraGroups = [ "dialout" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       # utilities
-      btop
-      devenv
       kdePackages.filelight
       keepassxc
       liquidctl
@@ -212,23 +179,18 @@ rec {
       telegram-desktop
 
       # media
-      spotify
       strawberry
       vlc
 
       # media dev
       blender-hip
+      godot
       inkscape
       krita
       pureref
 
       # dev
-      freecad-wayland
-      graphviz
-      godot
       kicad
-      orca-slicer
-      vscode
 
       # fun
       libreoffice-qt

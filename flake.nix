@@ -19,6 +19,12 @@
         ./desktop/xenu-q58.nix
         ./gui/plasma.nix
         ./games/vr.nix
+
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.xenu = ./home/xenu.nix;
+        }
       ];
     };
 
