@@ -183,7 +183,7 @@ rec {
       vlc
 
       # media dev
-      blender-hip
+      blender
       godot
       inkscape
       krita
