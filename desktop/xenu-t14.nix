@@ -45,6 +45,8 @@ rec {
   # Enables touchpad
   services.libinput.enable = true;
 
+  nixpkgs.config.rocmSupport = true;
+
   environment.systemPackages = with pkgs; [
     curl
     unzip
@@ -136,7 +138,7 @@ rec {
       vlc
 
       # media dev
-      blender-hip
+      blender
       godot
       inkscape
       krita
