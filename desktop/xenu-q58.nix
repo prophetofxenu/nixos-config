@@ -77,20 +77,28 @@ rec {
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+
 
   # eve shares
   fileSystems."/mnt/eve/backup" = {
-    device = "eve.lan:/mnt/main/backup";
+    device = "eve.lan:/mnt/main/encrypt/backup";
     fsType = "nfs";
     options = [ "x-systemd.automount" "user" "noatime" "noauto" "x-systemd.idle-timeout=600" ];
   };
   fileSystems."/mnt/eve/media" = {
-    device = "eve.lan:/mnt/main/media";
+    device = "eve.lan:/mnt/main/encrypt/media";
     fsType = "nfs";
     options = [ "x-systemd.automount" "user" "noatime" "noauto" "x-systemd.idle-timeout=600" ];
   };
   fileSystems."/mnt/eve/personal" = {
-    device = "eve.lan:/mnt/main/personal";
+    device = "eve.lan:/mnt/main/encrypt/personal";
     fsType = "nfs";
     options = [ "x-systemd.automount" "user" "noatime" "noauto" "x-systemd.idle-timeout=600" ];
   };
@@ -100,7 +108,7 @@ rec {
     options = [ "x-systemd.automount" "user" "noatime" "noauto" "x-systemd.idle-timeout=600" ];
   };
   fileSystems."/mnt/eve/work" = {
-    device = "eve.lan:/mnt/main/work";
+    device = "eve.lan:/mnt/main/encrypt/work";
     fsType = "nfs";
     options = [ "x-systemd.automount" "user" "noatime" "noauto" "x-systemd.idle-timeout=600" ];
   };

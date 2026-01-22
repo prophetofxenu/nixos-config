@@ -22,4 +22,8 @@
       require("autoclose").setup()
     '';
   };
+
+  programs.git.settings = {
+    core.editor = "nvim";
+  };
 }
