@@ -4,6 +4,8 @@ rec {
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Optimize store during all builds
+  nix.optimise.automatic = true;
 
   # Device management
 
