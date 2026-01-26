@@ -4,6 +4,9 @@ rec {
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Optimize store during all builds
+  nix.optimise.automatic = true;
+
   # Device management
 
   boot = {
@@ -13,7 +16,7 @@ rec {
         enable = true;
         device = "nodev";
         efiSupport = true;
-	useOSProber = false;
+	      useOSProber = false;
       };
     };
   };
