@@ -88,11 +88,6 @@ rec {
     };
   };
 
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama-rocm;
-  };
-
   # eve shares
   fileSystems."/mnt/eve/backup" = {
     device = "eve.lan:/mnt/main/encrypt/backup";

@@ -17,6 +17,7 @@
         ./base-configs/q58-configuration.nix
 
         ./desktop/xenu-q58.nix
+        ./ai.nix
         ./gui/plasma.nix
         ./games/vr.nix
 
