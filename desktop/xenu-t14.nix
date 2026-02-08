@@ -109,6 +109,9 @@ rec {
   programs.zsh.enable = true;
 
   programs.firefox.enable = true;
+  # emoji won't render properly without this set
+  fonts.fontconfig.useEmbeddedBitmaps = true;
+
   programs.steam.enable = true;
 
   # User config
