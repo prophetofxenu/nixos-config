@@ -17,7 +17,7 @@
     #  set smartindent
     #  set backspace=indent,eol,start
     #'';
-    extraLuaConfig = ''
+    initLua = ''
       require("guess-indent").setup()
       require("autoclose").setup()
     '';
