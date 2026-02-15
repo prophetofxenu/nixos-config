@@ -15,11 +15,13 @@
     nixosConfigurations.xenu-q58 = nixpkgs.lib.nixosSystem {
       modules = [
         ./base-configs/q58-configuration.nix
-
         ./desktop/xenu-q58.nix
+
         ./ai.nix
+        ./development/media.nix
         ./gui/plasma.nix
         ./games/vr.nix
+        ./im.nix
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;

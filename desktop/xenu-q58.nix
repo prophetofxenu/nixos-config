@@ -184,24 +184,12 @@ rec {
       # internet
       chromium
 
-      # messaging
-      discord
-      signal-desktop
-      simplex-chat-desktop
-      telegram-desktop
-
       # media
       strawberry
       vlc
 
-      # media dev
-      blender
-      godot
-      inkscape
-      krita
-      pureref
-
       # dev
+      godot
       kicad
 
       # fun
