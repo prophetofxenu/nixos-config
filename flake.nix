@@ -36,9 +36,11 @@
         nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
 
         ./base-configs/t14-configuration.nix
-
         ./desktop/xenu-t14.nix
+
+        ./development/media.nix
         ./gui/plasma.nix
+        ./im.nix
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
