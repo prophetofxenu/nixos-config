@@ -211,4 +211,11 @@ rec {
     extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
   '';
 
+
+  ##################################################
+  ## don't change anything below this block idiot ##
+  ##################################################
+
+  # This is the initial version from when the config was generated.
+  system.stateVersion = "25.05";
 }

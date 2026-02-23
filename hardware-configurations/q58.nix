@@ -19,6 +19,7 @@
     };
 
   boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/512bc00b-42c3-4ec6-99ba-087ec4484d8a";
+  boot.initrd.luks.devices."root".preLVM = true;
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/D334-81DE";
