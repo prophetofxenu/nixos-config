@@ -9,7 +9,9 @@
 
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, ... }: {
 
-    # desktops
+    ###############
+    ## desktops
+    ###############
 
     nixosConfigurations.xenu-q58 = nixpkgs.lib.nixosSystem {
       modules = [
@@ -49,7 +51,16 @@
       ];
     };
 
-    # servers
+    ##############
+    ## servers
+    ##############
+
+    nixosConfigurations.xenu-nixbuild = nixpkgs.lib.nixosSystem {
+      modules = [
+        ./hardware-configurations/nixbuild.nix
+        ./server/xenu-nixbuild.nix
+      ];
+    };
 
     nixosConfigurations.xenu-pitunnel = nixpkgs.lib.nixosSystem {
       modules = [
