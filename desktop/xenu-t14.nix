@@ -3,6 +3,8 @@ rec {
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Needed to allow remote builds
+  nix.settings.trusted-users = [ "root" "@wheel" ];
 
   # Auto optimize store
   nix.optimise.automatic = true;
@@ -19,8 +21,8 @@ rec {
       efi.canTouchEfiVariables = true;
       grub = {
         enable = true;
-	device = "nodev";
-	efiSupport = true;
+        device = "nodev";
+        efiSupport = true;
       };
     };
   };
@@ -152,4 +154,11 @@ rec {
     pkgs.openocd
   ];
 
+
+  ##################################################
+  ## don't change anything below this block idiot ##
+  ##################################################
+
+  # This is the initial version from when the config was generated.
+  system.stateVersion = "25.05";
 }
