@@ -3,6 +3,8 @@ rec {
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Needed to allow remote builds
+  nix.settings.trusted-users = [ "root" "@wheel" ];
 
   # Auto optimize store
   nix.optimise.automatic = true;

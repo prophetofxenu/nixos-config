@@ -3,8 +3,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, ... }: {
@@ -33,6 +35,7 @@
     };
 
     nixosConfigurations.xenu-t14 = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
       modules = [
         nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
 
@@ -48,6 +51,8 @@
           home-manager.useUserPackages = true;
           home-manager.users.xenu = ./home/xenu.nix;
         }
+
+        # ./networking/wireguard-xenu-t14.nix
       ];
     };
 
@@ -71,9 +76,10 @@
 
         ./hardware-configurations/pi3.nix
         ./server/xenu-pitunnel.nix
-        
         # TODO remove this once it has been fixed in unstable
         (import ./server/networkmanager-aarch64-fix.nix)
+
+        ./networking/wireguard-server.nix
       ];
     };
 

@@ -46,6 +46,7 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     curl
+    dig
     htop
     wget
   ];
@@ -74,6 +75,16 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # dynamic DNS
+  services.ddns-updater = {
+    enable = true;
+    environment = {
+      CONFIG_FILEPATH = "/etc/ddns-noip.json";
+      PERIOD = "5m";
+      # needs this or it doesn't work for some reason
+      RESOLVER_ADDRESS = "127.0.0.1:53";
+    };
+  };
 
   ##################################################
   ## don't change anything below this block idiot ##
