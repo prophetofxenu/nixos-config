@@ -20,11 +20,12 @@
         ./hardware-configurations/q58.nix
         ./desktop/xenu-q58.nix
 
-        ./ai.nix
         ./development/media.nix
         ./gui/plasma.nix
         ./games/vr.nix
-        ./im.nix
+        ./programs/ai.nix
+        ./programs/im.nix
+        ./programs/utilities.nix
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
