@@ -21,6 +21,7 @@
         ./desktop/xenu-q58.nix
 
         ./development/media.nix
+        ./development/vscodium.nix
         ./gui/plasma.nix
         ./games/vr.nix
         ./programs/ai.nix
