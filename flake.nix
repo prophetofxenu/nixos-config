@@ -45,7 +45,8 @@
 
         ./development/media.nix
         ./gui/plasma.nix
-        ./im.nix
+        ./programs/ai.nix
+        ./programs/im.nix
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
