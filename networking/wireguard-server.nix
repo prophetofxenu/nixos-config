@@ -28,6 +28,7 @@
         "/xenu-pitunnel/10.100.0.1"
         "/eve.lan/10.100.0.2"
         "/xenu-q58/10.100.0.3"
+        "/xenu-nixbuild/10.100.0.50"
       ];
     };
   };
@@ -49,6 +50,8 @@
         ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o enu1u1 -d 192.168.1.2 -j MASQUERADE
         ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -i wg0 -d 10.100.0.3 -j DNAT --to-destination 192.168.1.3
         ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o enu1u1 -d 192.168.1.3 -j MASQUERADE
+        ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -i wg0 -d 10.100.0.50 -j DNAT --to-destination 192.168.1.151
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o enu1u1 -d 192.168.1.151 -j MASQUERADE
       '';
 
       # Undo the above
@@ -60,6 +63,8 @@
         ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o enu1u1 -d 192.168.1.2 -j MASQUERADE
         ${pkgs.iptables}/bin/iptables -t nat -D PREROUTING -i wg0 -d 10.100.0.3 -j DNAT --to-destination 192.168.1.3
         ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o enu1u1 -d 192.168.1.3 -j MASQUERADE
+        ${pkgs.iptables}/bin/iptables -t nat -D PREROUTING -i wg0 -d 10.100.0.50 -j DNAT --to-destination 192.168.1.151
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o enu1u1 -d 192.168.1.151 -j MASQUERADE
       '';
 
       # this will get copied to the global store so isn't great security wise but agenix
