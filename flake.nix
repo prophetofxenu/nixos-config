@@ -24,9 +24,15 @@
         ./development/vscodium.nix
         ./gui/plasma.nix
         ./games/vr.nix
-        ./programs/ai.nix
         ./programs/im.nix
         ./programs/utilities.nix
+
+        ./programs/ai.nix
+        {
+          # temporarily disable while whisper-cpp build is broken
+          xenu.open-webui.enable = false;
+          xenu.ollama.enable = true;
+        }
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
@@ -46,8 +52,14 @@
 
         ./development/media.nix
         ./gui/plasma.nix
-        ./programs/ai.nix
         ./programs/im.nix
+
+        ./programs/ai.nix
+        {
+          # temporarily disable while whisper-cpp build is broken
+          xenu.open-webui.enable = false;
+          xenu.ollama.enable = true;
+        }
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;

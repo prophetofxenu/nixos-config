@@ -1,8 +1,19 @@
-{ pkgs, services, ... }:
-rec {
-  services.ollama.enable = true;
-  services.ollama.package = pkgs.ollama-rocm;
+{ pkgs, lib, config, ... }:
+{
+  options = {
+    xenu.open-webui.enable = lib.mkEnableOption "Open Web-UI LLM client";
+    xenu.ollama.enable = lib.mkEnableOption "Ollama service for local LLM usage"; 
+  };
 
-  services.open-webui.enable = true;
-  services.open-webui.port = 50100;
+  config = {
+    services.open-webui = lib.mkIf config.xenu.open-webui.enable {
+      enable = true;
+      port = 50100;
+    };
+
+    services.ollama = lib.mkIf config.xenu.ollama.enable {
+      enable = true;
+      package = pkgs.ollama-rocm;
+    };
+  };
 }
