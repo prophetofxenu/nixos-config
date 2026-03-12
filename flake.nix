@@ -29,8 +29,7 @@
 
         ./programs/ai.nix
         {
-          # temporarily disable while whisper-cpp build is broken
-          xenu.open-webui.enable = false;
+          xenu.open-webui.enable = true;
           xenu.ollama.enable = true;
         }
 
@@ -56,9 +55,7 @@
 
         ./programs/ai.nix
         {
-          # temporarily disable while whisper-cpp build is broken
-          xenu.open-webui.enable = false;
-          xenu.ollama.enable = true;
+          xenu.open-webui.enable = true;
         }
 
         home-manager.nixosModules.home-manager {
