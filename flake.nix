@@ -29,8 +29,8 @@
 
         ./programs/ai.nix
         {
-          xenu.open-webui.enable = true;
-          xenu.ollama.enable = true;
+          xenu.ai.open-webui.enable = true;
+          xenu.ai.ollama.enable = true;
         }
 
         home-manager.nixosModules.home-manager {
@@ -55,7 +55,8 @@
 
         ./programs/ai.nix
         {
-          xenu.open-webui.enable = true;
+          xenu.ai.open-webui.enable = true;
+          xenu.ai.mcp.filesystem = true;
         }
 
         home-manager.nixosModules.home-manager {
