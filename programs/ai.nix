@@ -1,78 +1,9 @@
 { pkgs, lib, config, ... }:
 let
-
-  mcpo = with pkgs; python3Packages.buildPythonApplication rec {
-    pname = "mcpo";
-    version = "0.0.20";
-    pyproject = true;
-
-    src = fetchFromGitHub {
-      owner = "open-webui";
-      repo = "mcpo";
-      tag = "v${version}";
-      hash = "sha256-tA1KdcfmNPuqPbwE66jRY85tsrOKjPImsxSoGsW5ZD4=";
-    };
-
-    build-system = with python3Packages; [ setuptools hatchling ];
-
-    dependencies = with python3Packages; [
-       click
-       fastapi
-       mcp
-       mcp
-       passlib
-       pydantic
-       pyjwt
-       python-dotenv
-       typer
-       uvicorn
-       watchdog
-    ];
-  };
-
-  mcp-filesystem-server = with pkgs; buildGoModule rec {
-    pname = "mcp-filesystem-server";
-    version = "0.11.1";
-
-    src = fetchFromGitHub {
-      owner = "mark3labs";
-      repo = "mcp-filesystem-server";
-      tag = "v${version}";
-      hash = "sha256-Vl6aVR7eheHtlmL9LzidhjeAFO7COxAQ9h9Ol6jCLkM=";
-    };
-
-    vendorHash = "sha256-Jln72WlZ7gmF7m28lVOjLrmrHck1E+2bB0o6q2N9JR8=";
-
-    meta = {
-      description = "Filesystem MCP server written in Go";
-      homepage = "sha256-ogAug05ChGLSJ+KvmP5xXreDhkLHau15Wnp0ry7Ck88=";
-      license = lib.licenses.mit;
-    };
-  };
-
-  mcp-nixos = with pkgs; python3Packages.buildPythonApplication rec {
-    pname = "mcp-nixos";
-    version = "2.3.0";
-    pyproject = true;
-
-    src = fetchFromGitHub {
-      owner = "utensils";
-      repo = "mcp-nixos";
-      tag = "v${version}";
-      hash = "sha256-ogAug05ChGLSJ+KvmP5xXreDhkLHau15Wnp0ry7Ck88=";
-    };
-
-    build-system = with python3Packages; [ setuptools hatchling ];
-
-    dependencies = with python3Packages; [
-      beautifulsoup4
-      fastmcp
-      requests
-    ];
-  };
-
+  mcpo = pkgs.callPackage ./mcp/mcpo.nix { };
+  mcp-filesystem-server = pkgs.callPackage ./mcp/mcp-filesystem-server.nix { };
+  mcp-nixos = pkgs.callPackage ./mcp/mcp-nixos.nix { };
 in
-
 {
   options = {
     xenu.ai.open-webui.enable = lib.mkEnableOption "Open Web-UI LLM client";
