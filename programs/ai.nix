@@ -1,21 +1,33 @@
 { pkgs, lib, config, ... }:
 let
 
-  mcp-proxy = with pkgs; python3Packages.buildPythonApplication rec {
-    pname = "mcp-proxy";
-    version = "0.11.0";
+  mcpo = with pkgs; python3Packages.buildPythonApplication rec {
+    pname = "mcpo";
+    version = "0.0.20";
     pyproject = true;
 
     src = fetchFromGitHub {
-      owner = "sparfenyuk";
-      repo = "mcp-proxy";
+      owner = "open-webui";
+      repo = "mcpo";
       tag = "v${version}";
-      hash = "sha256-oSRchkCnPoQ3KZXPW49O2yTgNRi9aJbKki3z9BxBPhA=";
+      hash = "sha256-tA1KdcfmNPuqPbwE66jRY85tsrOKjPImsxSoGsW5ZD4=";
     };
 
-    build-system = with python3Packages; [ setuptools ];
-    
-    dependencies = with python3Packages; [ httpx-auth mcp uvicorn ];
+    build-system = with python3Packages; [ setuptools hatchling ];
+
+    dependencies = with python3Packages; [
+       click
+       fastapi
+       mcp
+       mcp
+       passlib
+       pydantic
+       pyjwt
+       python-dotenv
+       typer
+       uvicorn
+       watchdog
+    ];
   };
 
   mcp-filesystem-server = with pkgs; buildGoModule rec {
@@ -33,20 +45,41 @@ let
 
     meta = {
       description = "Filesystem MCP server written in Go";
-      homepage = "";
+      homepage = "sha256-ogAug05ChGLSJ+KvmP5xXreDhkLHau15Wnp0ry7Ck88=";
       license = lib.licenses.mit;
     };
   };
 
+  mcp-nixos = with pkgs; python3Packages.buildPythonApplication rec {
+    pname = "mcp-nixos";
+    version = "2.3.0";
+    pyproject = true;
+
+    src = fetchFromGitHub {
+      owner = "utensils";
+      repo = "mcp-nixos";
+      tag = "v${version}";
+      hash = "sha256-ogAug05ChGLSJ+KvmP5xXreDhkLHau15Wnp0ry7Ck88=";
+    };
+
+    build-system = with python3Packages; [ setuptools hatchling ];
+
+    dependencies = with python3Packages; [
+      beautifulsoup4
+      fastmcp
+      requests
+    ];
+  };
+
 in
+
 {
   options = {
     xenu.ai.open-webui.enable = lib.mkEnableOption "Open Web-UI LLM client";
     xenu.ai.ollama.enable = lib.mkEnableOption "Ollama service for local LLM usage"; 
 
-    xenu.ai.mcp.filesystem = lib.mkOption {
-      type = lib.types.bool;
-    };
+    xenu.ai.mcp.filesystem = lib.mkOption { type = lib.types.bool; default = false; };
+    xenu.ai.mcp.nixos = lib.mkOption { type = lib.types.bool; default = false; };
   };
 
   config = {
@@ -60,13 +93,28 @@ in
       package = pkgs.ollama-rocm;
     };
 
-    systemd.user.services.mcp-proxy = lib.mkIf xenu.ai.mcp.filesystem {
-      enable = false;
+    systemd.user.services.mcp-filesystem = lib.mkIf config.xenu.ai.mcp.filesystem {
       after = [ "network.target" ];
-      description = "My proxy service for stdio MCP servers";
+      description = "mcp-proxy for mcp-filesystem-server";
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${mcp-proxy}/bin/mcp-proxy";
+        ExecStart = "${mcpo}/bin/mcpo --port 9090 --api-key 'top-secret' -- ${mcp-filesystem-server}/bin/mcp-filesystem-server /home/xenu/Desktop";
+        Restart = "no";
+      };
+    };
+
+    systemd.user.services.mcp-nixos = lib.mkIf config.xenu.ai.mcp.nixos {
+      after = [ "network.target" ];
+      description = "Querying of Nix related databases and docs";
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${mcp-nixos}/bin/mcp-nixos";
+        Restart = "no";
+      };
+      environment = {
+        MCP_NIXOS_TRANSPORT = "http";
+        MCP_NIXOS_HOST = "127.0.0.1";
+        MCP_NIXOS_PORT = "9091";
       };
     };
   };

@@ -57,6 +57,7 @@
         {
           xenu.ai.open-webui.enable = true;
           xenu.ai.mcp.filesystem = true;
+          xenu.ai.mcp.nixos = true;
         }
 
         home-manager.nixosModules.home-manager {
