@@ -56,8 +56,10 @@
         ./programs/ai.nix
         {
           xenu.ai.open-webui.enable = true;
-          xenu.ai.mcp.filesystem = true;
-          xenu.ai.mcp.nixos = true;
+          xenu.ai.mcp.filesystem.enable = true;
+          xenu.ai.mcp.filesystem.apiKey = "top-secret";
+          xenu.ai.mcp.filesystem.allowedDirectories = [ "/home/xenu/Desktop/mcp-fs" ];
+          xenu.ai.mcp.nixos.enable = true;
         }
 
         home-manager.nixosModules.home-manager {
