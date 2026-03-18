@@ -74,6 +74,7 @@ in
         Type = "simple";
         ExecStart = ''
           ${mcpo}/bin/mcpo \
+            -h localhost \
             --port ${toString config.xenu.ai.mcp.filesystem.port} \
             --api-key ${config.xenu.ai.mcp.filesystem.apiKey} \
             -- \
@@ -91,6 +92,7 @@ in
         Type = "simple";
         ExecStart = ''
           ${mcpo}/bin/mcpo \
+            -h localhost \
             --port ${toString config.xenu.ai.mcp.logseq.port} \
             --api-key ${config.xenu.ai.mcp.logseq.mcpApiKey} \
             -- \
