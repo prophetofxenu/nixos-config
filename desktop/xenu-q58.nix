@@ -62,16 +62,6 @@ rec {
     pulse.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    curl
-    killall
-    lm_sensors
-    lsof
-    unzip
-    wget
-    zip
-  ];
-
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -174,12 +164,8 @@ rec {
     shell = pkgs.zsh;
     packages = with pkgs; [
       # utilities
-      kdePackages.filelight
-      keepassxc
       liquidctl
       logseq
-      megasync
-      restic
 
       # internet
       chromium

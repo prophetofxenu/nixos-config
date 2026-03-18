@@ -26,6 +26,9 @@
         ./games/vr.nix
         ./programs/im.nix
         ./programs/utilities.nix
+        {
+          xenu.utilities.set = "desktop";
+        }
 
         ./programs/ai.nix
         {
@@ -52,6 +55,10 @@
         ./development/media.nix
         ./gui/plasma.nix
         ./programs/im.nix
+        ./programs/utilities.nix
+        {
+          xenu.utilities.set = "desktop";
+        }
 
         ./programs/ai.nix
         {
@@ -77,6 +84,11 @@
       modules = [
         ./hardware-configurations/nixbuild.nix
         ./server/xenu-nixbuild.nix
+
+        ./programs/utilities.nix
+        {
+          xenu.utilities.set = "server";
+        }
       ];
     };
 
@@ -92,6 +104,10 @@
         # TODO remove this once it has been fixed in unstable
         (import ./server/networkmanager-aarch64-fix.nix)
 
+        ./programs/utilities.nix
+        {
+          xenu.utilities.set = "server";
+        }
         ./networking/wireguard-server.nix
       ];
     };
