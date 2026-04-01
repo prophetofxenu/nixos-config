@@ -139,6 +139,8 @@ rec {
       strawberry
       vlc
 
+      orca-slicer
+
       # dev
       godot
       kicad
