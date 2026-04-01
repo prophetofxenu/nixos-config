@@ -60,6 +60,8 @@
           xenu.utilities.set = "desktop";
         }
 
+        ./programs/orca-slicer-pin.nix
+
         ./programs/ai.nix
         {
           xenu.ai.open-webui.enable = true;
