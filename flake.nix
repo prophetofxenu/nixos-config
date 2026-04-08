@@ -101,8 +101,6 @@
 
         ./hardware-configurations/pi3.nix
         ./server/xenu-pitunnel.nix
-        # TODO remove this once it has been fixed in unstable
-        (import ./server/networkmanager-aarch64-fix.nix)
 
         ./programs/utilities.nix
         {
