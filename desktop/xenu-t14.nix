@@ -139,14 +139,17 @@ rec {
       strawberry
       vlc
 
-      orca-slicer
-
       # dev
       godot
       kicad
 
       # drones
       betaflight-configurator
+
+      # fun
+      libreoffice-qt
+      hunspell
+      hunspellDicts.en_US
     ];
   };
 
