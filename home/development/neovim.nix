@@ -3,6 +3,8 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    withRuby = false;
+    withPython3 = false;
 
     plugins = with pkgs.vimPlugins; [
       { plugin = guess-indent-nvim; }
@@ -22,6 +24,8 @@
       require("autoclose").setup()
     '';
   };
+
+
 
   programs.git.settings = {
     core.editor = "nvim";
