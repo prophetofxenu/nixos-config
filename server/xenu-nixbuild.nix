@@ -8,6 +8,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 32 * 1024;
+  }];
+
   networking.hostName = "xenu-nixbuild"; # Define your hostname.
 
   # Configure network connections interactively with nmcli or nmtui.
