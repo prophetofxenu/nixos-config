@@ -178,6 +178,8 @@ rec {
       godot
       kicad
 
+      orca-slicer
+
       # fun
       libreoffice-qt
       hunspell

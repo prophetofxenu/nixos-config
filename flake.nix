@@ -17,6 +17,7 @@
 
     nixosConfigurations.xenu-q58 = nixpkgs.lib.nixosSystem {
       modules = [
+        { nix.settings.trusted-users = [ "xenu" ]; }
         ./hardware-configurations/q58.nix
         ./desktop/xenu-q58.nix
 
@@ -35,6 +36,8 @@
           xenu.ai.open-webui.enable = true;
           xenu.ai.ollama.enable = true;
         }
+
+        ./programs/orca-slicer-pin.nix
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
