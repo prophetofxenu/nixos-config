@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager = {
@@ -9,7 +10,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, nixpkgsStable, nixos-hardware, home-manager, ... }: {
 
     ###############
     ## desktops
@@ -95,7 +96,7 @@
       ];
     };
 
-    nixosConfigurations.xenu-pitunnel = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.xenu-pitunnel = nixpkgsStable.lib.nixosSystem {
       modules = [
         {
           nixpkgs.buildPlatform = "x86_64-linux";
@@ -104,8 +105,6 @@
 
         ./hardware-configurations/pi3.nix
         ./server/xenu-pitunnel.nix
-        # TODO remove this once it has been fixed in unstable
-        (import ./server/networkmanager-aarch64-fix.nix)
 
         ./programs/utilities.nix
         {
