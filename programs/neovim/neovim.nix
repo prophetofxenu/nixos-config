@@ -10,7 +10,8 @@
   users.users.xenu.packages = [(
     pkgs.writeShellScriptBin "restore-neovim-config" ''
       rm -rf $HOME/.config/nvim
-      cp -r ./nvim $HOME/.config/nvim
+      cp -r ${./nvim} $HOME/.config/nvim
+      chmod 744 -R $HOME/.config/nvim
     ''
   )];
 }
