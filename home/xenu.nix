@@ -9,7 +9,7 @@
 
     ./development/ai.nix
     ./development/development.nix
-    ./development/neovim.nix
+    #./development/neovim.nix
     ./development/vscode/vscode.nix
 
     ./engineering/3d-printing.nix

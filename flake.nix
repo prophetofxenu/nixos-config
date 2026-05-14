@@ -26,6 +26,7 @@
         ./gui/plasma.nix
         ./games/vr.nix
         ./programs/im.nix
+        ./programs/neovim/neovim.nix
         ./programs/utilities.nix
         {
           xenu.utilities.set = "desktop";
@@ -58,6 +59,7 @@
         ./development/media.nix
         ./gui/plasma.nix
         ./programs/im.nix
+        ./programs/neovim/neovim.nix
         ./programs/utilities.nix
         {
           xenu.utilities.set = "desktop";
