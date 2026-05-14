@@ -25,6 +25,7 @@
         ./development/media.nix
         ./development/vscodium.nix
         ./gui/plasma.nix
+        ./games/minecraft.nix
         ./games/vr.nix
         ./programs/im.nix
         ./programs/utilities.nix
