@@ -10,12 +10,15 @@ let
   nvimPlugins = pkgs.symlinkJoin {
     name = "neovim-plugins";
     paths = with pkgs.vimPlugins; [
+      bufferline-nvim
       guess-indent-nvim
       lualine-nvim
+      nvim-tree-lua
       nvim-web-devicons
       omni-theme-nvim
       plenary-nvim
       telescope-nvim
+      telescope-file-browser-nvim
       toggleterm-nvim
     ];
   };
@@ -28,6 +31,12 @@ in
     viAlias = true;
     vimAlias = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    fd
+    nerd-fonts.hack
+    ripgrep
+  ];
 
   users.users.xenu.packages = [(
     pkgs.writeShellScriptBin "restore-neovim-config" ''
