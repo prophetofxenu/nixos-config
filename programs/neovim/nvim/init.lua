@@ -1,3 +1,3 @@
-require('config.lazy')
+require('omni').colorscheme()
 
-vim.cmd[[colorscheme omni]]
+require('guess-indent').setup {}
