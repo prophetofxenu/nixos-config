@@ -11,7 +11,12 @@ let
     name = "neovim-plugins";
     paths = with pkgs.vimPlugins; [
       guess-indent-nvim
+      lualine-nvim
+      nvim-web-devicons
       omni-theme-nvim
+      plenary-nvim
+      telescope-nvim
+      toggleterm-nvim
     ];
   };
 in
