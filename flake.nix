@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager = {
@@ -9,7 +10,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, nixpkgsStable, nixos-hardware, home-manager, ... }: {
 
     ###############
     ## desktops
@@ -24,6 +25,7 @@
         ./development/media.nix
         ./development/vscodium.nix
         ./gui/plasma.nix
+        ./games/minecraft.nix
         ./games/vr.nix
         ./programs/im.nix
         ./programs/neovim/neovim.nix
@@ -97,7 +99,7 @@
       ];
     };
 
-    nixosConfigurations.xenu-pitunnel = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.xenu-pitunnel = nixpkgsStable.lib.nixosSystem {
       modules = [
         {
           nixpkgs.buildPlatform = "x86_64-linux";
