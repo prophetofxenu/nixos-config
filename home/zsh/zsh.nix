@@ -18,7 +18,7 @@
 
       gosys = "cd /etc/nixos";
       vimsys = "sudoedit /etc/nixos";
-      upd8 = "sudo nixos-rebuild switch --flake /etc/nixos";
+      upd8 = "sudo nixos-rebuild switch --flake";
     };
 
     plugins = [
