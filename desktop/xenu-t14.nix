@@ -67,6 +67,52 @@ rec {
     };
   };
 
+  # eve backups
+  fileSystems."/mnt/eve/backup" = {
+    device = "eve.lan:/mnt/main/encrypt/backup";
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "user" "noatime" "noauto" "x-systemd.idle-timeout=600" ];
+  };
+
+  services.restic.backups.main = {
+    paths = [
+      "/etc/nixos"
+
+      "/home/xenu/Desktop"
+      "/home/xenu/Documents"
+      "/home/xenu/Downloads"
+      "/home/xenu/Music"
+      "/home/xenu/Pictures"
+      "/home/xenu/Videos"
+
+      "/home/xenu/MEGA"
+
+      "/home/xenu/.bash_profile"
+      "/home/xenu/.bashrc"
+      "/home/xenu/.gitconfig"
+      "/home/xenu/.gnupg"
+      "/home/xenu/.logseq"
+      "/home/xenu/.ssh"
+      "/home/xenu/.vscode"
+    ];
+
+    repository = "/mnt/eve/backup/restic";
+    passwordFile = "/etc/nixos/secrets/restic-password";
+    backupPrepareCommand = ''
+      #!${pkgs.bash}/bin/bash
+      if ${pkgs.util-linux}/bin/mountpoint -q /mnt/eve/backup
+      then
+        exit 0
+      fi
+      exit 1
+    '';
+
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true; # will catch up if computer wasn't running at 8am
+    };
+  };
+
   services.openvpn.servers.xenu-pivpn = {
     config = '' config /etc/openvpn-configs/xenu-t14.ovpn '';
     autoStart = false;
@@ -102,7 +148,6 @@ rec {
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
 
   # Packages
 
