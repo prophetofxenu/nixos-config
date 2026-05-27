@@ -13,6 +13,7 @@ let
       bufferline-nvim
       guess-indent-nvim
       lualine-nvim
+      nvim-lspconfig
       nvim-tree-lua
       nvim-web-devicons
       omni-theme-nvim

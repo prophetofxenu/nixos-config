@@ -41,5 +41,13 @@ require('toggleterm').setup {
   open_mapping = [[<c-j>]]
 }
 
+-- LSP
+vim.lsp.config('zls', {
+  cmd = { 'zls' },
+  filetypes = { 'zig' },
+})
+vim.lsp.enable('zls')
+
+-- settings
 vim.cmd[[set number]]
 
