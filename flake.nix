@@ -36,7 +36,7 @@
 
         ./programs/ai.nix
         {
-          xenu.ai.open-webui.enable = false;
+          xenu.ai.open-webui.enable = true;
           xenu.ai.ollama.enable = true;
         }
 
@@ -69,7 +69,7 @@
 
         ./programs/ai.nix
         {
-          xenu.ai.open-webui.enable = false;
+          xenu.ai.open-webui.enable = true;
           xenu.ai.mcp.nixos.enable = true;
         }
 
