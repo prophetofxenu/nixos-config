@@ -174,7 +174,8 @@ rec {
     packages = with pkgs; [
       # utilities
       keepassxc
-      logseq
+      # logseq is temporarily broken due to an electron issue
+      #logseq
       megasync
 
       # internet

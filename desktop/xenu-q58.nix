@@ -165,7 +165,8 @@ rec {
     packages = with pkgs; [
       # utilities
       liquidctl
-      logseq
+      # logseq is temporarily broken due to an electron issue
+      #logseq
 
       # internet
       chromium
