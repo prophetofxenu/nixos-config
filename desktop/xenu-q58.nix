@@ -177,8 +177,10 @@ rec {
 
       # dev
       godot
-      kicad
 
+      freecad
+      graphviz # for dependency graph
+      kicad
       orca-slicer
 
       # fun

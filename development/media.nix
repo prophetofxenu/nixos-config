@@ -4,7 +4,6 @@
     blender
     darktable
     inkscape
-    krita
-    pureref
+    #pureref
   ];
 }
