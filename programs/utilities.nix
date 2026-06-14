@@ -14,6 +14,7 @@ let
     lm_sensors
     lsof
     pciutils
+    tmux
     unzip
     usbutils
     wget
