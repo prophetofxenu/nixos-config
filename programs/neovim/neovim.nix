@@ -12,6 +12,7 @@ let
     paths = with pkgs.vimPlugins; [
       bufferline-nvim
       guess-indent-nvim
+      indent-blankline-nvim
       lualine-nvim
       nvim-lspconfig
       nvim-tree-lua

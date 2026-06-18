@@ -6,6 +6,8 @@ require('omni').colorscheme()
 
 require('guess-indent').setup {}
 
+require('ibl').setup {}
+
 require('lualine').setup {
   options = {
     theme = 'omni'
