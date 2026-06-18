@@ -3,9 +3,13 @@
 {
   nixpkgs.overlays = [
     (final: prev: {
-      glew = prev.glew.override { enableEGL = false; };
+      #glew = prev.glew.override { enableEGL = false; };
 
-      orca-slicer = prev.orca-slicer.overrideAttrs (oldAttrs: {
+      orca-slicera = prev.orca-slicer.override {
+        glew = prev.glew.override { enableEGL = false };
+      };
+
+      orca-slicer = final.orca-slicera (oldAttrs: {
         version = "2.3.1";
 
         src = final.fetchFromGitHub {
