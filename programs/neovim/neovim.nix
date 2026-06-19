@@ -38,6 +38,10 @@ in
     fd
     nerd-fonts.hack
     ripgrep
+
+    # LSP
+    nixd
+    zls
   ];
 
   users.users.xenu.packages = [(

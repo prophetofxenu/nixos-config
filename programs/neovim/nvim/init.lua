@@ -46,6 +46,12 @@ require('toggleterm').setup {
 }
 
 -- LSP
+vim.lsp.config('nixd', {
+  cmd = { 'nixd' },
+  filetypes = { 'nix' },
+})
+vim.lsp.enable('nixd')
+
 vim.lsp.config('zls', {
   cmd = { 'zls' },
   filetypes = { 'zig' },
