@@ -178,10 +178,10 @@ rec {
       # dev
       godot
 
-      freecad
-      graphviz # for dependency graph
+      #freecad
+      #graphviz # for dependency graph
       kicad
-      orca-slicer
+      #orca-slicer
 
       # fun
       libreoffice-qt

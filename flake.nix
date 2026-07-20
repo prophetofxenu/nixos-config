@@ -40,7 +40,13 @@
           xenu.ai.ollama.enable = true;
         }
 
-        ./programs/orca-slicer-pin.nix
+        {
+          users.users.xenu.packages = with nixpkgsStable.legacyPackages."x86_64-linux"; [
+            freecad
+            graphviz
+            orca-slicer
+          ];
+        }
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
