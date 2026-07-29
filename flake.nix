@@ -36,7 +36,6 @@
 
         ./programs/ai.nix
         {
-          xenu.ai.open-webui.enable = true;
           xenu.ai.ollama.enable = true;
         }
 
@@ -71,12 +70,6 @@
         ./programs/utilities.nix
         {
           xenu.utilities.set = "desktop";
-        }
-
-        ./programs/ai.nix
-        {
-          xenu.ai.open-webui.enable = true;
-          xenu.ai.mcp.nixos.enable = true;
         }
 
         home-manager.nixosModules.home-manager {
