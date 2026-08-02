@@ -22,6 +22,7 @@
         ./hardware-configurations/q58.nix
         ./desktop/xenu-q58.nix
 
+        ./desktop/printing.nix
         ./development/media.nix
         ./development/vscodium.nix
         ./gui/plasma.nix
@@ -63,6 +64,7 @@
         ./hardware-configurations/t14.nix
         ./desktop/xenu-t14.nix
 
+        ./desktop/printing.nix
         ./development/media.nix
         ./gui/plasma.nix
         ./programs/im.nix
