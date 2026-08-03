@@ -34,6 +34,7 @@
         {
           xenu.utilities.set = "desktop";
         }
+        ./programs/logseq-electron-41.nix
 
         ./programs/ai.nix
         {
@@ -73,6 +74,7 @@
         {
           xenu.utilities.set = "desktop";
         }
+        ./programs/logseq-electron-41.nix
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
