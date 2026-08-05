@@ -65,7 +65,7 @@
         ./hardware-configurations/t14.nix
         ./desktop/xenu-t14.nix
 
-        ./desktop/printing.nix
+        #./desktop/printing.nix
         ./development/media.nix
         ./gui/plasma.nix
         ./programs/im.nix
