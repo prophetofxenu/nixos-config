@@ -23,14 +23,17 @@
       ];
 
       # set DNS to the VPN server
-      # this isn't actually working rn lol
-      # postSetup = ''
-      #   ${pkgs.openresolv}/bin/resolvconf -a wg0 -m 0 -x
-      #   ${pkgs.openresolv}/bin/resolvconf -u
-      # '';
-      # postShutdown = ''
-      #   ${pkgs.openresolv}/bin/resolvconf -a wg0 -x
-      # '';
+      postSetup = ''
+        ${pkgs.openresolv}/bin/resolvconf -a wg0 -m 0 -x <<'EOF'
+          nameserver 10.100.0.1
+          nameserver 208.67.222.222
+          nameserver 208.67.220.220
+        EOF
+      '';
+
+      postShutdown = ''
+        ${pkgs.openresolv}/bin/resolvconf -d wg0
+      '';
     };
   };
 }
