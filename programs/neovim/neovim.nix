@@ -14,6 +14,7 @@ let
       guess-indent-nvim
       indent-blankline-nvim
       lualine-nvim
+      nvim-comment
       nvim-lspconfig
       nvim-tree-lua
       nvim-web-devicons

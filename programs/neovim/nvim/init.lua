@@ -2,6 +2,9 @@ vim.g.mapleader = " "
 
 require('bufferline').setup {}
 
+-- gcc: toggle comment for current line, or visual block
+require('nvim_comment').setup()
+
 require('omni').colorscheme()
 
 require('guess-indent').setup {}
