@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgsStable, nixos-hardware, home-manager, ... }: {
+  outputs = { self, nixpkgs, nixpkgsStable, nixos-hardware, home-manager, ... }: {
 
     ###############
     ## desktops
@@ -81,8 +81,6 @@
           home-manager.useUserPackages = true;
           home-manager.users.xenu = ./home/xenu.nix;
         }
-
-        # ./networking/wireguard-xenu-t14.nix
       ];
     };
 

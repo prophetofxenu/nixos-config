@@ -124,12 +124,20 @@ rec {
       mv /etc/resolv.conf.backup /etc/resolv.conf
     '';
   };
+  services.openvpn.servers.airvpn-all = {
+    config = '' config /etc/openvpn-configs/AirVPN_All-servers_UDP-443-Entry3.ovpn '';
+    autoStart = false;
+  };
   services.openvpn.servers.airvpn-eu = {
     config = '' config /etc/openvpn-configs/AirVPN_Europe_UDP-443-Entry3.ovpn '';
     autoStart = false;
   };
   services.openvpn.servers.airvpn-ca = {
     config = '' config /etc/openvpn-configs/AirVPN_Canada_UDP-443-Entry3.ovpn '';
+    autoStart = false;
+  };
+  services.openvpn.servers.airvpn-nz = {
+    config = '' config /etc/openvpn-configs/AirVPN_New-Zealand_UDP-443-Entry3.ovpn '';
     autoStart = false;
   };
 
