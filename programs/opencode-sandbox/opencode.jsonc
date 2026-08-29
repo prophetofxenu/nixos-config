@@ -1,0 +1,18 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "context7": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "Authorization": "Bearer xxx"
+      }
+    },
+    "nixos": {
+      "enabled" : true,
+      "type": "remote",
+      "url": "http://127.0.0.1:57172/mcp"
+    }
+  }
+}
