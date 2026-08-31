@@ -180,7 +180,7 @@ rec {
       #freecad
       #graphviz # for dependency graph
       kicad
-      #orca-slicer
+      orca-slicer
 
       # fun
       libreoffice-qt
