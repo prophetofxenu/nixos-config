@@ -35,6 +35,7 @@
 
       # Tools opencode relies on for snapshots/diffs/vcs.
       environment.systemPackages = with pkgs; [
+        devenv
         opencode
         git
       ];
