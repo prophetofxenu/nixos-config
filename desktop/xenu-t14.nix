@@ -196,9 +196,6 @@ rec {
       godot
       kicad
 
-      # drones
-      betaflight-configurator
-
       # fun
       libreoffice-qt
       hunspell
