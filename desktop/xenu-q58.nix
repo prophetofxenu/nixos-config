@@ -165,7 +165,6 @@ rec {
     packages = with pkgs; [
       # utilities
       liquidctl
-      logseq
 
       # internet
       chromium

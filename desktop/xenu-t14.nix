@@ -182,7 +182,6 @@ rec {
     packages = with pkgs; [
       # utilities
       keepassxc
-      logseq
       megasync
 
       # internet
