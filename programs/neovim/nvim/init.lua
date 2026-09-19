@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 
-require('bufferline').setup {}
+require('bufferline').setup {
+  options = {
+    numbers = "buffer_id"
+  }
+}
 
 -- gcc: toggle comment for current line, or visual block
 require('nvim_comment').setup()
@@ -29,6 +33,8 @@ require('telescope').load_extension "file_browser"
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+-- to close a buffer without affecting windows, use the below command to find
+-- the number, followed by :#bd
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float, { noremap = true, silent = true })
