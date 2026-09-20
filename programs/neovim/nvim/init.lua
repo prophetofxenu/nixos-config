@@ -11,6 +11,8 @@ require('nvim_comment').setup()
 
 require('omni').colorscheme()
 
+require('gitsigns').setup {}
+
 require('guess-indent').setup {}
 
 require('ibl').setup {}
@@ -55,6 +57,14 @@ require('toggleterm').setup {
 }
 
 -- LSP
+-- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
+
+vim.lsp.config('gopls', {
+  cmd = { 'gopls' },
+  filetypes = { 'go' }
+})
+vim.lsp.enable('gopls')
+
 vim.lsp.config('nixd', {
   cmd = { 'nixd' },
   filetypes = { 'nix' },

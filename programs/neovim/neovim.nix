@@ -1,5 +1,4 @@
 {
-  libs,
   pkgs,
   ...
 }:
@@ -11,6 +10,7 @@ let
     name = "neovim-plugins";
     paths = with pkgs.vimPlugins; [
       bufferline-nvim
+      gitsigns-nvim
       guess-indent-nvim
       indent-blankline-nvim
       lualine-nvim
