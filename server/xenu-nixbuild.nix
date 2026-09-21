@@ -3,6 +3,10 @@
 {
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Sign built derivations with trusted key for remote deployments
+  nix.extraOptions = ''
+    secret-key-files = /etc/nixos/secrets/nix-cache-priv-key
+  '';
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
