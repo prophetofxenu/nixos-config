@@ -81,6 +81,12 @@
           xenu.utilities.set = "desktop";
         }
 
+        {
+          users.users.xenu.packages = with nixpkgsDevenv222.legacyPackages."x86_64-linux"; [
+            devenv
+          ];
+        }
+
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
