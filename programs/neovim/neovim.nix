@@ -9,6 +9,7 @@ let
   nvimPlugins = pkgs.symlinkJoin {
     name = "neovim-plugins";
     paths = with pkgs.vimPlugins; [
+      autoclose-nvim
       bufferline-nvim
       gitsigns-nvim
       guess-indent-nvim
