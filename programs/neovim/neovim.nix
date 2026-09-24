@@ -10,6 +10,7 @@ let
     name = "neovim-plugins";
     paths = with pkgs.vimPlugins; [
       autoclose-nvim
+      blink-cmp
       bufferline-nvim
       gitsigns-nvim
       guess-indent-nvim
@@ -48,12 +49,13 @@ in
 
   users.users.xenu.packages = [(
     pkgs.writeShellScriptBin "restore-neovim-config" ''
+      set -e
       rm -rf $HOME/.config/nvim
       echo "${./nvim} -> $HOME/.config/nvim"
-      cp -r ${./nvim} $HOME/.config/nvim
-      chmod 744 -R $HOME/.config/nvim
-      cp -r ${nvimPlugins}/lua/* $HOME/.config/nvim/lua
-      chmod 744 -R $HOME/.config/nvim
+      mkdir $HOME/.config/nvim
+      cp -r ${nvimPlugins}/* $HOME/.config/nvim
+      cp -r ${./nvim}/* $HOME/.config/nvim
+      find $HOME/.config/nvim -type d -exec chmod 755 {} \;
     ''
   )];
 }

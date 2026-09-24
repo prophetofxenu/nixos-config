@@ -2,6 +2,16 @@ vim.g.mapleader = " "
 
 require('autoclose').setup {}
 
+require('blink.cmp').setup {
+  -- toggle commpletions/documentation: <C-space>
+  -- hide: <C-e>
+  -- prev: <Up>, <C-p>
+  -- next: <Down>, <C-n>
+  -- docs page up: <C-b>
+  -- docs page down: <C-f>
+  keymap = { preset = 'super-tab' }
+}
+
 require('bufferline').setup {
   options = {
     numbers = "buffer_id"
@@ -61,19 +71,24 @@ require('toggleterm').setup {
 -- LSP
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
 
+local blink_caps = require('blink.cmp').get_lsp_capabilities()
+
 vim.lsp.config('gopls', {
+  capabilities = blink_caps,
   cmd = { 'gopls' },
   filetypes = { 'go' }
 })
 vim.lsp.enable('gopls')
 
 vim.lsp.config('nixd', {
+  capabilities = blink_caps,
   cmd = { 'nixd' },
   filetypes = { 'nix' },
 })
 vim.lsp.enable('nixd')
 
 vim.lsp.config('zls', {
+  capabilities = blink_caps,
   cmd = { 'zls' },
   filetypes = { 'zig' },
 })
