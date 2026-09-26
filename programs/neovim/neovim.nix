@@ -43,6 +43,7 @@ in
     ripgrep
 
     # LSP
+    clang-tools
     nixd
     zls
   ];
@@ -56,6 +57,7 @@ in
       cp -r ${nvimPlugins}/* $HOME/.config/nvim
       cp -r ${./nvim}/* $HOME/.config/nvim
       find $HOME/.config/nvim -type d -exec chmod 755 {} \;
+      find $HOME/.config/nvim -type f -exec chmod 644 {} \;
     ''
   )];
 }

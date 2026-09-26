@@ -73,6 +73,18 @@ require('toggleterm').setup {
 
 local blink_caps = require('blink.cmp').get_lsp_capabilities()
 
+vim.lsp.config('clangd', {
+  capabilities = blink_caps,
+  cmd = {
+    'clangd',
+    -- this is needed for platformio
+    '--query-driver' .. table.concat({
+      vim.env.HOME .. '/.platformio/packages/toolchain-*/bin/*'
+    })
+  }
+})
+vim.lsp.enable('clangd')
+
 vim.lsp.config('gopls', {
   capabilities = blink_caps,
   cmd = { 'gopls' },
