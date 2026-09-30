@@ -35,6 +35,8 @@ require('lualine').setup {
   }
 }
 
+require('neogit').setup {}
+
 require('telescope').setup {
   extensions = {
     file_browser = {
