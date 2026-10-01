@@ -82,6 +82,12 @@
         }
 
         {
+          users.users.xenu.packages = with nixpkgsStable.legacyPackages."x86_64-linux"; [
+            freecad
+            graphviz
+          ];
+        }
+        {
           users.users.xenu.packages = with nixpkgsDevenv222.legacyPackages."x86_64-linux"; [
             devenv
           ];
