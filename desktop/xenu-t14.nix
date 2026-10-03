@@ -194,6 +194,7 @@ rec {
       # dev
       godot
       kicad
+      orca-slicer
 
       # fun
       libreoffice-qt
