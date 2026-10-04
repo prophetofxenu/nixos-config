@@ -80,7 +80,7 @@ vim.lsp.config('clangd', {
   cmd = {
     'clangd',
     -- this is needed for platformio
-    '--query-driver' .. table.concat({
+    '--query-driver ' .. table.concat({
       vim.env.HOME .. '/.platformio/packages/toolchain-*/bin/*'
     })
   }
