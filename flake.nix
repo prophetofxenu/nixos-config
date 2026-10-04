@@ -101,6 +101,34 @@
       ];
     };
 
+    nixosConfigurations.xenu-lat14 = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./hardware-configurations/lat14.nix
+        ./desktop/xenu-lat14.nix
+
+        ./gui/plasma.nix
+        ./programs/neovim/neovim.nix
+        ./programs/utilities.nix
+        {
+          xenu.utilities.set = "desktop";
+        }
+        ./programs/logseq-electron-41.nix
+        {
+          users.users.xenu.packages = with nixpkgsStable.legacyPackages."x86_64-linux"; [
+            freecad
+            graphviz
+          ];
+        }
+
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.xenu = ./home/xenu.nix;
+        }
+      ];
+    };
+
     ##############
     ## servers
     ##############

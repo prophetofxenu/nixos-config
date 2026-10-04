@@ -1,0 +1,146 @@
+{ lib, config, options, pkgs, users, ... }:
+rec {
+
+  # Enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Needed to allow remote builds
+  nix.settings.trusted-users = [ "root" "@wheel" ];
+
+  # Auto optimize store
+  nix.optimise.automatic = true;
+
+  nix.extraOptions = ''
+    extra-substituters = https://devenv.cachix.org
+    extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+  '';
+
+  # Device management
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+      };
+    };
+  };
+
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 8 * 1024;
+  }];
+
+  networking.hostName = "xenu-lat14";
+  time.timeZone = "America/New_York";
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  # Pick only one of the below networking options.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
+
+  # Enables touchpad
+  services.libinput.enable = true;
+
+  services.openvpn.servers.airvpn-ca = {
+    config = '' config /etc/openvpn-configs/AirVPN_Canada_UDP-443-Entry3.ovpn '';
+    autoStart = false;
+  };
+
+  environment.systemPackages = with pkgs; [
+    curl
+    unzip
+    wget
+    zip
+  ];
+
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+  hardware.bluetooth.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # Packages
+
+  nixpkgs.config.allowUnfree = true;
+
+  programs.zsh.enable = true;
+
+  programs.firefox.enable = true;
+  # emoji won't render properly without this set
+  fonts.fontconfig.useEmbeddedBitmaps = true;
+
+  # User config
+
+  users.users.xenu = {
+    isNormalUser = true;
+    extraGroups = [
+      "dialout" # embedded development
+      "wheel" # sudo
+    ];
+    shell = pkgs.zsh;
+    useDefaultShell = false;
+    packages = with pkgs; [
+      # utilities
+      keepassxc
+      #logseq
+
+      # im
+      discord
+      telegram-desktop
+
+      # internet
+      chromium
+
+      # media
+      strawberry
+      vlc
+
+      # dev
+      kicad
+      orca-slicer
+
+      # fun
+      libreoffice-qt
+      hunspell
+      hunspellDicts.en_US
+    ];
+  };
+
+  # enable udev rules for platformio
+  services.udev.packages = [
+    pkgs.platformio-core.udev
+    pkgs.openocd
+  ];
+
+
+  ##################################################
+  ## don't change anything below this block idiot ##
+  ##################################################
+
+  # This is the initial version from when the config was generated.
+  system.stateVersion = "26.05";
+}
