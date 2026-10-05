@@ -27,11 +27,13 @@ let
     keepassxc
     megasync
     restic
+    zellij
   ];
 
   serverUtils = with pkgs; essentialUtils ++ [
     btop
     restic
+    zellij
   ];
 
   maintenanceScript = pkgs.writeShellScriptBin "maintenance"
