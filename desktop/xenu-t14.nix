@@ -192,7 +192,11 @@ rec {
       vlc
 
       # dev
+      devenv
       godot
+
+      freecad
+      graphviz # for dependency graph
       kicad
       orca-slicer
 

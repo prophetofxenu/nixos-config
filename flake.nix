@@ -4,16 +4,13 @@
     nixpkgsStable.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # added because devenv 2.3.1 has a bug that breaks it, and a fix is not available
-    nixpkgsDevenv222.url = "github:NixOS/nixpkgs/bb11e50a8843e245cd8400e1ae3823bd6f64cc9c";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgsStable, nixos-hardware, nixpkgsDevenv222, home-manager, ... }: {
+  outputs = { self, nixpkgs, nixpkgsStable, nixos-hardware, home-manager, ... }: {
 
     ###############
     ## desktops
@@ -43,18 +40,6 @@
           xenu.ai.ollama.enable = true;
         }
 
-        {
-          users.users.xenu.packages = with nixpkgsStable.legacyPackages."x86_64-linux"; [
-            freecad
-            graphviz
-          ];
-        }
-        {
-          users.users.xenu.packages = with nixpkgsDevenv222.legacyPackages."x86_64-linux"; [
-            devenv
-          ];
-        }
-
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -79,18 +64,6 @@
         ./programs/utilities.nix
         {
           xenu.utilities.set = "desktop";
-        }
-
-        {
-          users.users.xenu.packages = with nixpkgsStable.legacyPackages."x86_64-linux"; [
-            freecad
-            graphviz
-          ];
-        }
-        {
-          users.users.xenu.packages = with nixpkgsDevenv222.legacyPackages."x86_64-linux"; [
-            devenv
-          ];
         }
 
         home-manager.nixosModules.home-manager {

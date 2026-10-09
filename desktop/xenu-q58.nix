@@ -1,5 +1,8 @@
-{ lib, config, options, pkgs, users, ... }:
-rec {
+{
+  pkgs,
+  ...
+}:
+{
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -174,10 +177,11 @@ rec {
       vlc
 
       # dev
+      devenv
       godot
 
-      #freecad
-      #graphviz # for dependency graph
+      freecad
+      graphviz # for dependency graph
       kicad
       orca-slicer
 
