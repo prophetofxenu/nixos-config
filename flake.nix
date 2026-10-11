@@ -115,6 +115,38 @@
         {
           xenu.utilities.set = "server";
         }
+        ./programs/opencode-sandbox/container.nix
+        {
+          xenu.ai.opencode-sandbox.enable = true;
+          xenu.ai.opencode-sandbox.containers.test = {
+            port = 4096;
+            openFirewall = true;
+            hostDir = "/mnt/opencode-sandbox";
+            envFile = "/home/xenu/opencode.env";
+            opencodeConf = {
+
+              mcp = {
+
+                context7 = {
+                  enabled = true;
+                  type = "remote";
+                  url = "https://mcp.context7.com/mcp";
+                  headers = {
+                    Authorization = "Bearer {env:CONTEXT7_API_KEY}";
+                  };
+                };
+
+                nixos = {
+                  enabled = true;
+                  type = "remote";
+                  url = "http://127.0.0.1:57172/mcp";
+                };
+
+              };
+
+            };
+          };
+        }
       ];
     };
 

@@ -25,6 +25,12 @@ in
               description = "The name of the container.";
             };
 
+            autoStart = lib.options.mkOption {
+              type = lib.types.bool;
+              default = true;
+              description = "Whether to autostart the container.";
+            };
+
             port = lib.options.mkOption {
               type = lib.types.port;
               default = 4096;
@@ -74,29 +80,17 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    # ensure the host dirs exist
-    # assertions = 
-    #   let
-    #
-    #     hostDirSet = lib.mapAttrsToList (name: inst: {
-    #       assertion = inst.hostDir != null;
-    #       message = "No host directory set for container ${name}.";
-    #     }) cfg.containers;
-    #
-    #     hostDirExists = lib.mapAttrsToList (name: inst: {
-    #       assertion = builtins.pathExists inst.hostDir; 
-    #       message = "Host directory ${inst.hostDir} does not exist.";
-    #       }) cfg.containers;
-    #
-    #   in
-    #     hostDirSet ++ hostDirExists;
+    networking.firewall.allowedTCPPorts =
+      let
+        f = _: c: if c.openFirewall then [ c.port ] ++ c.additionalPorts else [];
+        ports = lib.mapAttrsToList f cfg.containers;
+      in
+        lib.lists.flatten ports;
 
-    # networking.firewall.allowedTCPPorts =
-    #   if cfg.openFirewall then [ cfg.port ] ++ cfg.additionalPorts else [];
 
     containers = lib.mapAttrs (name: inst: {
       ephemeral = true;
-      autoStart = false;
+      autoStart = inst.autoStart;
 
       bindMounts."/work" = {
         hostPath = inst.hostDir;
@@ -157,7 +151,7 @@ in
           after = ["network-online.target"];
           wants = ["network-online.target"];
           environment.HOME = "/home/opencode";
-          environment.OPENCODE_CONFIG = pkgs.writeText "opencode.jsonc" (lib.fileContents ./opencode.jsonc);
+          environment.OPENCODE_CONFIG = pkgs.writeText "opencode.jsonc" (builtins.toJSON inst.opencodeConf);
           serviceConfig = {
             User = "opencode";
             Group = "opencode";
