@@ -12,6 +12,7 @@ let
       autoclose-nvim
       blink-cmp
       bufferline-nvim
+      diffview-nvim
       gitsigns-nvim
       guess-indent-nvim
       indent-blankline-nvim
