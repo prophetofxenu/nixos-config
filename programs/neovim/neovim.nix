@@ -13,6 +13,7 @@ let
       blink-cmp
       bufferline-nvim
       diffview-nvim
+      dropbar-nvim
       gitsigns-nvim
       guess-indent-nvim
       indent-blankline-nvim
