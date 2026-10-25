@@ -8,9 +8,34 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # temporary inputs
+    nixpkgsKernel_6_18_56.url = "github:NixOS/nixpkgs?rev=764c4eaef7cbff1c8342c9ff01ea6ced7d2b3ccc";
   };
 
-  outputs = { self, nixpkgs, nixpkgsStable, nixos-hardware, home-manager, ... }: {
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgsStable,
+    nixos-hardware,
+    home-manager,
+
+    nixpkgsKernel_6_18_56,
+    ...
+  }:
+  let
+    pinnedKernelModule = {
+      boot.kernelPackages =
+        let
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          pkgsKernelPin = nixpkgsKernel_6_18_56.legacyPackages."x86_64-linux";
+        in
+        assert pkgs.linuxPackages.kernel.version == "6.18.57";
+        assert pkgsKernelPin.linuxPackages.kernel.version == "6.18.56";
+        pkgsKernelPin.linuxPackages;
+    };
+  in
+  {
 
     ###############
     ## desktops
@@ -20,6 +45,7 @@
       modules = [
         { nix.settings.trusted-users = [ "xenu" ]; }
         ./hardware-configurations/q58.nix
+        pinnedKernelModule
         ./desktop/xenu-q58.nix
 
         ./desktop/printing.nix
@@ -52,6 +78,7 @@
       system = "x86_64-linux";
       modules = [
         nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
+        pinnedKernelModule
 
         ./hardware-configurations/t14.nix
         ./desktop/xenu-t14.nix
@@ -71,6 +98,8 @@
           home-manager.useUserPackages = true;
           home-manager.users.xenu = ./home/xenu.nix;
         }
+
+        #./networking/wireguard-xenu-t14.nix
       ];
     };
 
