@@ -77,29 +77,15 @@
     nixosConfigurations.xenu-t14 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
-        pinnedKernelModule
-
-        ./hardware-configurations/t14.nix
         ./desktop/xenu-t14/xenu-t14.nix
+        nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
 
-        ./desktop/printing.nix
-        ./development/media.nix
-        ./gui/plasma.nix
-        ./programs/im.nix
-        ./programs/neovim/neovim.nix
-        ./programs/utilities.nix
-        {
-          xenu.utilities.set = "desktop";
-        }
-
+        pinnedKernelModule
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.xenu = ./home/xenu.nix;
         }
-
-        #./networking/wireguard-xenu-t14.nix
       ];
     };
 

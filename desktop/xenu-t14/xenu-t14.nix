@@ -1,5 +1,21 @@
-{ lib, config, options, pkgs, users, ... }:
-rec {
+{
+  pkgs,
+  ...
+}:
+{
+
+  imports = [
+    ../../hardware-configurations/t14.nix
+
+    ../printing.nix
+    ../../development/media.nix
+    ../../gui/plasma.nix
+    ../../programs/im.nix
+    ../../programs/neovim/neovim.nix
+    ../../programs/utilities.nix
+
+    ../../networking/wireguard-xenu-t14.nix
+  ];
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -160,6 +176,8 @@ rec {
   # Packages
 
   nixpkgs.config.allowUnfree = true;
+
+  xenu.utilities.set = "desktop";
 
   programs.zsh.enable = true;
 
