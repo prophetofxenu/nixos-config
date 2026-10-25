@@ -46,7 +46,7 @@
         { nix.settings.trusted-users = [ "xenu" ]; }
         ./hardware-configurations/q58.nix
         pinnedKernelModule
-        ./desktop/xenu-q58.nix
+        ./desktop/xenu-q58/xenu-q58.nix
 
         ./desktop/printing.nix
         ./development/media.nix
@@ -81,7 +81,7 @@
         pinnedKernelModule
 
         ./hardware-configurations/t14.nix
-        ./desktop/xenu-t14.nix
+        ./desktop/xenu-t14/xenu-t14.nix
 
         ./desktop/printing.nix
         ./development/media.nix
@@ -107,7 +107,7 @@
       system = "x86_64-linux";
       modules = [
         ./hardware-configurations/lat14.nix
-        ./desktop/xenu-lat14.nix
+        ./desktop/xenu-lat14/xenu-lat14.nix
 
         ./gui/plasma.nix
         ./programs/neovim/neovim.nix
