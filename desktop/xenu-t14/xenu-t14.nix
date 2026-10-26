@@ -11,10 +11,12 @@
     ../../development/media.nix
     ../../gui/plasma.nix
     ../../programs/im.nix
+    ./opencode.nix
     ../../programs/neovim/neovim.nix
     ../../programs/utilities.nix
 
     ../../networking/wireguard-xenu-t14.nix
+    ../../networking/wireguard-local-proxy.nix
   ];
 
   # Enable flakes

@@ -80,7 +80,7 @@
         ./desktop/xenu-t14/xenu-t14.nix
         nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
 
-        pinnedKernelModule
+        ./overlays/overlays.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
