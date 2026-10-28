@@ -106,6 +106,7 @@ in
         imports = [
           ../ai.nix
 
+          ../../overlays/fastmcp-slim-mcp-v1.nix
           ./mcp.nix
         ];
 

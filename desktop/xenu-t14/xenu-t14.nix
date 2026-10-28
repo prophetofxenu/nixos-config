@@ -15,7 +15,7 @@
     ../../programs/neovim/neovim.nix
     ../../programs/utilities.nix
 
-    ../../networking/wireguard-xenu-t14.nix
+    ./wireguard.nix
     ../../networking/wireguard-local-proxy.nix
   ];
 
