@@ -30,7 +30,7 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           pkgsKernelPin = nixpkgsKernel_6_18_56.legacyPackages."x86_64-linux";
         in
-        assert pkgs.linuxPackages.kernel.version == "6.18.57";
+        assert pkgs.linuxPackages.kernel.version == "6.18.58";
         assert pkgsKernelPin.linuxPackages.kernel.version == "6.18.56";
         pkgsKernelPin.linuxPackages;
     };
@@ -81,6 +81,7 @@
         nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
 
         ./overlays/overlays.nix
+        pinnedKernelModule
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
