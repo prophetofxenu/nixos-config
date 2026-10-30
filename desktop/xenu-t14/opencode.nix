@@ -10,6 +10,10 @@
     hostDir = "/mnt/opencode-sandbox/main";
     envFile = "/home/xenu/.config/opencode-sandbox/opencode-main.env";
     opencodeConf = {
+      provider = (import ../../programs/opencode-sandbox/viro.nix).provider;
+      model = "viro/optimized";
+      small_model = "viro/clean";
+
       mcp = {
         context7 = {
           enabled = true;

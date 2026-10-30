@@ -140,9 +140,10 @@
             hostDir = "/mnt/opencode-sandbox";
             envFile = "/home/xenu/opencode.env";
             opencodeConf = {
-
+              provider = (import ./programs/opencode-sandbox/viro.nix).provider;
+              model = "viro/optimized";
+              small_model = "viro/clean";
               mcp = {
-
                 context7 = {
                   enabled = true;
                   type = "remote";
@@ -151,15 +152,12 @@
                     Authorization = "Bearer {env:CONTEXT7_API_KEY}";
                   };
                 };
-
                 nixos = {
                   enabled = true;
                   type = "remote";
                   url = "http://127.0.0.1:57172/mcp";
                 };
-
               };
-
             };
           };
         }
