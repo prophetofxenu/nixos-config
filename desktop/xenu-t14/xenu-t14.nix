@@ -201,6 +201,7 @@
     useDefaultShell = false;
     packages = with pkgs; [
       # utilities
+      logseq
       keepassxc
       megasync
 

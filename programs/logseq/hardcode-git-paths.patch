@@ -1,0 +1,196 @@
+diff -ru a/deps/common/deps.edn b/deps/common/deps.edn
+--- a/deps/common/deps.edn
++++ b/deps/common/deps.edn
+@@ -1,6 +1,5 @@
+ {:paths ["src" "resources"]
+- :deps {com.andrewmcveigh/cljs-time           {:git/url "https://github.com/logseq/cljs-time" ;; fork
+-                                               :sha     "5704fbf48d3478eedcf24d458c8964b3c2fd59a9"}
++ :deps {com.andrewmcveigh/cljs-time           {:local/root "@cljs_time_src@"}
+         funcool/promesa                       {:mvn/version "11.0.678"}}
+  :aliases
+  {:test {:extra-paths ["test"]
+diff -ru a/deps/db/deps.edn b/deps/db/deps.edn
+--- a/deps/db/deps.edn
++++ b/deps/db/deps.edn
+@@ -1,7 +1,6 @@
+ {:deps
+  ;; These nbb-logseq deps are kept in sync with https://github.com/logseq/nbb-logseq/blob/main/bb.edn
+- {datascript/datascript {:git/url "https://github.com/logseq/datascript" ;; fork
+-                         :sha     "3f141af97b70e1f14c65eaa119acd822ebece37e"}
++ {datascript/datascript {:local/root "@datascript_src@"}
+   ;; datascript/datascript                 {:local/root "../../../../datascript"}
+   datascript-transit/datascript-transit {:mvn/version "0.3.0"
+                                          :exclusions [datascript/datascript]}
+@@ -11,11 +10,9 @@
+ 
+   ;; Any other deps should be added here and to nbb.edn
+   logseq/common                         {:local/root "../common"}
+-  logseq/clj-fractional-indexing        {:git/url "https://github.com/logseq/clj-fractional-indexing"
+-                                         :sha     "1087f0fb18aa8e25ee3bbbb0db983b7a29bce270"}
++  logseq/clj-fractional-indexing        {:local/root "@clj_fractional_indexing_src@"}
+   borkdude/rewrite-edn                  {:mvn/version "0.5.9"}
+-  metosin/malli                         {:git/url "https://github.com/metosin/malli"
+-                                         :sha     "52ea58a36ff5172b38dfc526ca638afa7226a4a0"}
++  metosin/malli                         {:local/root "@malli_src@"}
+   medley/medley                         {:mvn/version "1.4.0"}}
+ 
+  :aliases
+diff -ru a/deps/db-sync/deps.edn b/deps/db-sync/deps.edn
+--- a/deps/db-sync/deps.edn
++++ b/deps/db-sync/deps.edn
+@@ -1,15 +1,13 @@
+ {:paths ["src" "test" "../../resources"]
+  :deps
+  {org.clojure/clojure                   {:mvn/version "1.12.4"}
+-  datascript/datascript                 {:git/url "https://github.com/logseq/datascript"
+-                                         :sha     "3f141af97b70e1f14c65eaa119acd822ebece37e"}
++  datascript/datascript                 {:local/root "@datascript_src@"}
+   datascript-transit/datascript-transit {:mvn/version "0.3.0"
+                                          :exclusions [datascript/datascript]}
+   com.cognitect/transit-cljs            {:mvn/version "0.8.280"}
+   cljs-bean/cljs-bean                   {:mvn/version "1.9.0"}
+   thheller/shadow-cljs                  {:mvn/version "3.4.4"}
+-  com.lambdaisland/glogi                {:git/url "https://github.com/lambdaisland/glogi"
+-                                         :git/sha "30328a045141717aadbbb693465aed55f0904976"}
++  com.lambdaisland/glogi                {:local/root "@glogi_src@"}
+   metosin/reitit                        {:mvn/version "0.10.1"
+                                          :exclusions [metosin/malli]}
+   logseq/common                         {:local/root "../common"}
+diff -ru a/deps/graph-parser/deps.edn b/deps/graph-parser/deps.edn
+--- a/deps/graph-parser/deps.edn
++++ b/deps/graph-parser/deps.edn
+@@ -1,8 +1,7 @@
+ {:paths ["src"]
+  :deps
+  ;; These nbb-logseq deps are kept in sync with https://github.com/logseq/nbb-logseq/blob/main/bb.edn
+- {com.andrewmcveigh/cljs-time {:git/url "https://github.com/logseq/cljs-time" ;; fork
+-                               :sha     "5704fbf48d3478eedcf24d458c8964b3c2fd59a9"}
++ {com.andrewmcveigh/cljs-time {:local/root "@cljs_time_src@"}
+   funcool/promesa             {:mvn/version "11.0.678"}
+   cljs-bean/cljs-bean         {:mvn/version "1.9.0"}
+ 
+@@ -11,8 +10,7 @@
+   logseq/db                   {:local/root "../db"}
+   logseq/common               {:local/root "../common"}
+   ;; stubbed via logseq.common.log
+-  com.lambdaisland/glogi      {:git/url "https://github.com/lambdaisland/glogi"
+-                               :git/sha "30328a045141717aadbbb693465aed55f0904976"}}
++  com.lambdaisland/glogi      {:local/root "@glogi_src@"}}
+ 
+  :aliases
+  ;; This runs tests with nodejs. Would be nice to run this with in a browser env
+diff -ru a/deps/outliner/deps.edn b/deps/outliner/deps.edn
+--- a/deps/outliner/deps.edn
++++ b/deps/outliner/deps.edn
+@@ -1,18 +1,15 @@
+ {:deps
+  ;; These nbb-logseq deps are kept in sync with https://github.com/logseq/nbb-logseq/blob/main/bb.edn
+- {datascript/datascript       {:git/url "https://github.com/logseq/datascript" ;; fork
+-                               :sha     "3f141af97b70e1f14c65eaa119acd822ebece37e"}
++ {datascript/datascript       {:local/root "@datascript_src@"}
+   ;; datascript/datascript {:local/root "../../../../datascript"}
+   com.cognitect/transit-cljs  {:mvn/version "0.8.280"}
+ 
+   ;; Any other deps should be added here and to nbb.edn
+   logseq/db                   {:local/root "../db"}
+   logseq/graph-parser         {:local/root "../graph-parser"}
+-  metosin/malli               {:git/url "https://github.com/metosin/malli"
+-                               :sha     "52ea58a36ff5172b38dfc526ca638afa7226a4a0"}
++  metosin/malli               {:local/root "@malli_src@"}
+   ;; stubbed via logseq.common.log
+-  com.lambdaisland/glogi      {:git/url "https://github.com/lambdaisland/glogi"
+-                               :git/sha "30328a045141717aadbbb693465aed55f0904976"}}
++  com.lambdaisland/glogi      {:local/root "@glogi_src@"}}
+  :aliases
+  {:clj-kondo
+   {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2026.04.15"}}
+diff -ru a/deps/publish/deps.edn b/deps/publish/deps.edn
+--- a/deps/publish/deps.edn
++++ b/deps/publish/deps.edn
+@@ -1,11 +1,9 @@
+ {:paths ["src" "test" "../../resources"]
+  :deps
+  {org.clojure/clojure                   {:mvn/version "1.12.4"}
+-  io.factorhouse/hsx                    {:git/url "https://github.com/logseq/hsx"
+-                                         :sha     "21615ffa2aa530cc830e3464b793a53ef4fdd18c"}
++  io.factorhouse/hsx                    {:local/root "@hsx_src@"}
+ 
+-  datascript/datascript                 {:git/url "https://github.com/logseq/datascript" ;; fork
+-                                         :sha     "3f141af97b70e1f14c65eaa119acd822ebece37e"}
++  datascript/datascript                 {:local/root "@datascript_src@"}
+   datascript-transit/datascript-transit {:mvn/version "0.3.0"
+                                          :exclusions [datascript/datascript]}
+   funcool/promesa                       {:mvn/version "11.0.678"}
+diff -ru a/deps/shui/deps.edn b/deps/shui/deps.edn
+--- a/deps/shui/deps.edn
++++ b/deps/shui/deps.edn
+@@ -3,8 +3,7 @@
+  {org.clojure/clojure                   {:mvn/version "1.12.4"}
+   org.clojure/clojurescript             {:mvn/version "1.12.134"}
+   funcool/promesa                       {:mvn/version "11.0.678"}
+-  io.factorhouse/hsx                    {:git/url "https://github.com/logseq/hsx"
+-                                         :sha     "21615ffa2aa530cc830e3464b793a53ef4fdd18c"}
++  io.factorhouse/hsx                    {:local/root "@hsx_src@"}
+ 
+   medley/medley                         {:mvn/version "1.4.0"}
+   cljs-bean/cljs-bean                   {:mvn/version "1.9.0"}}}
+diff -ru a/deps.edn b/deps.edn
+--- a/deps.edn
++++ b/deps.edn
+@@ -2,13 +2,10 @@
+  :deps
+  {org.clojure/clojure                   {:mvn/version "1.12.4"}
+   org.clojure/clojurescript             {:mvn/version "1.12.134"}
+-  io.factorhouse/hsx                    {:git/url "https://github.com/logseq/hsx"
+-                                         :sha     "21615ffa2aa530cc830e3464b793a53ef4fdd18c"}
+-  io.github.logseq/rfx                  {:git/url "https://github.com/logseq/rfx.git"
+-                                         :git/sha "d37aaceb37fcaf969c5cd04646dfdb985d65d3c2"}
++  io.factorhouse/hsx                    {:local/root "@hsx_src@"}
++  io.github.logseq/rfx                  {:local/root "@rfx_src@"}
+ 
+-  datascript/datascript                 {:git/url "https://github.com/logseq/datascript" ;; fork
+-                                         :sha     "3f141af97b70e1f14c65eaa119acd822ebece37e"}
++  datascript/datascript                 {:local/root "@datascript_src@"}
+   ;; datascript/datascript                 {:local/root "../../datascript"}
+ 
+   datascript-transit/datascript-transit {:mvn/version "0.3.0"}
+@@ -20,8 +17,7 @@
+   cljs-bean/cljs-bean                   {:mvn/version "1.9.0"}
+   prismatic/dommy                       {:mvn/version "1.1.0"}
+   org.clojure/core.match                {:mvn/version "1.1.0"}
+-  com.andrewmcveigh/cljs-time           {:git/url "https://github.com/logseq/cljs-time" ;; fork
+-                                         :sha     "5704fbf48d3478eedcf24d458c8964b3c2fd59a9"}
++  com.andrewmcveigh/cljs-time           {:local/root "@cljs_time_src@"}
+   ;; TODO: delete cljs-drag-n-drop and use dnd-kit
+   cljs-drag-n-drop/cljs-drag-n-drop     {:mvn/version "0.1.0"}
+   cljs-http/cljs-http                   {:mvn/version "0.1.49"}
+@@ -34,8 +30,7 @@
+   org.clojure/core.async                {:mvn/version "1.8.741"}
+   thheller/shadow-cljs                  {:mvn/version "3.4.4"}
+   expound/expound                       {:mvn/version "0.9.0"}
+-  com.lambdaisland/glogi                {:git/url "https://github.com/lambdaisland/glogi"
+-                                         :git/sha "30328a045141717aadbbb693465aed55f0904976"}
++  com.lambdaisland/glogi                {:local/root "@glogi_src@"}
+   camel-snake-kebab/camel-snake-kebab   {:mvn/version "0.4.3"}
+   instaparse/instaparse                 {:mvn/version "1.5.0"}
+   org.clojars.mmb90/cljs-cache          {:mvn/version "0.1.4"}
+@@ -46,16 +41,13 @@
+   logseq/db-sync                        {:local/root "deps/db-sync"}
+   logseq/publishing                     {:local/root "deps/publishing"}
+   logseq/shui                           {:local/root "deps/shui"}
+-  metosin/malli                         {:git/url "https://github.com/metosin/malli"
+-                                         :sha     "52ea58a36ff5172b38dfc526ca638afa7226a4a0"}
++  metosin/malli                         {:local/root "@malli_src@"}
+   com.cognitect/transit-cljs            {:mvn/version "0.8.280"}
+ 
+-  io.github.open-spaced-repetition/cljc-fsrs {:git/sha "eeef3520df664e51c3d0ba2031ec2ba071635442"
+-                                              :git/url "https://github.com/open-spaced-repetition/cljc-fsrs"}
++  io.github.open-spaced-repetition/cljc-fsrs {:local/root "@cljc_fsrs_src@"}
+   tick/tick                              {:mvn/version "1.0"}
+ 
+-  logseq/logseq-schema                   {:git/url "https://github.com/logseq/logseq-schema"
+-                                          :git/sha "6eeb51cd6d80bbffa0873c1e79790dc1f4ff68cf"}}
++  logseq/logseq-schema                   {:local/root "@logseq_schema_src@"}}
+ 
+  :aliases {:cljs {:extra-paths ["src/dev-cljs/" "src/test/" "src/electron/"]
+                   :extra-deps  {org.clojure/tools.namespace      {:mvn/version "1.5.0"}
