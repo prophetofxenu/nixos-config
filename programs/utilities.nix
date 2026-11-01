@@ -38,11 +38,11 @@ let
 
   maintenanceScript = pkgs.writeShellScriptBin "maintenance"
   ''
-    read -p "Remove all but the last 3 generations? "
+    read -p "Remove generations older than the last 3 days? "
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
-      sudo nix-env --delete-generations +3
+      #sudo nix-env --delete-generations 3d
       echo 'Deleted old generations'
     fi
 
