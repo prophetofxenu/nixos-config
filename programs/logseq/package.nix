@@ -39,7 +39,7 @@
   removeReferencesTo,
   glib,
   libsecret,
-  electron_42,
+  electron_43,
   git,
   ocaml-ng,
   pnpm_10,
@@ -47,7 +47,7 @@
 }:
 
 let
-  electron = electron_42;
+  electron = electron_43;
   version = "2.0.2";
 
   src = fetchFromGitHub {
