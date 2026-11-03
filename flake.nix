@@ -114,6 +114,7 @@
         ./hardware-configurations/nixbuild.nix
         ./server/xenu-nixbuild.nix
 
+        ./overlays/overlays.nix
         ./programs/utilities.nix
         {
           xenu.utilities.set = "server";
