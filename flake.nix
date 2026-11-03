@@ -23,18 +23,6 @@
     nixpkgsKernel_6_18_56,
     ...
   }:
-  let
-    pinnedKernelModule = {
-      boot.kernelPackages =
-        let
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          pkgsKernelPin = nixpkgsKernel_6_18_56.legacyPackages."x86_64-linux";
-        in
-        assert pkgs.linuxPackages.kernel.version == "6.18.59";
-        assert pkgsKernelPin.linuxPackages.kernel.version == "6.18.56";
-        pkgsKernelPin.linuxPackages;
-    };
-  in
   {
 
     ###############
@@ -48,7 +36,6 @@
         ./desktop/xenu-q58/xenu-q58.nix
 
         ./overlays/overlays.nix
-        pinnedKernelModule
         ./desktop/printing.nix
         ./development/media.nix
         ./development/vscodium.nix
@@ -81,11 +68,7 @@
         ./desktop/xenu-t14/xenu-t14.nix
         nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen2
 
-        # ./docker-compose.nix
-        # ./dashboards-secrets.nix
-
         ./overlays/overlays.nix
-        pinnedKernelModule
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -100,7 +83,6 @@
         ./hardware-configurations/lat14.nix
         ./desktop/xenu-lat14/xenu-lat14.nix
 
-        pinnedKernelModule
         ./gui/plasma.nix
         ./programs/neovim/neovim.nix
         ./programs/utilities.nix
