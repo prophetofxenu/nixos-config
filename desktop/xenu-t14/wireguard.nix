@@ -44,10 +44,8 @@
 
       # set DNS to the VPN server
       postSetup = ''
-        ${pkgs.openresolv}/bin/resolvconf -a wg-llp -m 0 -x <<'EOF'
+        ${pkgs.openresolv}/bin/resolvconf -a wg-llp -m 0 <<'EOF'
           nameserver 10.110.0.1
-          nameserver 208.67.222.222
-          nameserver 208.67.220.220
         EOF
       '';
 
