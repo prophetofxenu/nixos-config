@@ -7,7 +7,6 @@
   imports = [
     ./zsh/zsh.nix
 
-    ./development/ai.nix
     ./development/development.nix
     ./development/vscode/vscode.nix
   ];

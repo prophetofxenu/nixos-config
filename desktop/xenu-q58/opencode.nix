@@ -1,9 +1,8 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 {
   imports = [ ../../programs/opencode-sandbox/container.nix ];
+
+  users.users.xenu.packages = with pkgs; [ opencode ];
 
   xenu.ai.opencode-sandbox.enable = true;
   xenu.ai.opencode-sandbox.containers."lepi-labs" = {
