@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
-  networking.wireguard.interfaces = {
+  networking.wireguard.interfaces = lib.mkIf false {
     wg-llp = {
       ips = [ "10.110.0.101/32" ];
       privateKeyFile = "/etc/nixos/secrets/wireguard-llp.key";
