@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   networking.wireguard.interfaces = {
-    wg-pitunnel = {
+    wg-pitunnel = lib.mkIf false {
       ips = [ "10.100.0.100/32" ];
       listenPort = 51820;
 
@@ -30,7 +30,7 @@
       '';
     };
 
-    wg-llp = {
+    wg-llp = lib.mkIf false {
       ips = [ "10.110.0.100/32" ];
       privateKeyFile = "/etc/nixos/secrets/llp-wireguard-private.key";
       peers = [
