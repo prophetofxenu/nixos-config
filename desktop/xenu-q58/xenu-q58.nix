@@ -5,6 +5,7 @@
 {
   imports = [
     ./wireguard.nix
+    ../../games/vr-quest.nix
   ];
 
   # Enable flakes
@@ -163,7 +164,6 @@
   programs.steam.enable = true;
 
   # User config
-
   users.users.xenu = {
     isNormalUser = true;
     extraGroups = [ "dialout" "wheel" ];
