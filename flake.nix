@@ -49,11 +49,6 @@
           xenu.utilities.set = "desktop";
         }
 
-        ./programs/ai.nix
-        {
-          xenu.ai.ollama.enable = true;
-        }
-
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
